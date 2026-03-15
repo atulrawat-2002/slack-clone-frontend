@@ -1,5 +1,6 @@
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Button } from './components/ui/button'
+import Auth from './pages/auth/Auth'
 
 function App() {
 
@@ -7,8 +8,11 @@ function App() {
   return (
     <>
 
-        <h3 className=' text-teal-400' >Hello world</h3>
-        <Button >Click</Button>
+        <Routes>
+
+          <Route path='/auth' element={<Auth />} />
+
+        </Routes>
 
      </>
   ) 

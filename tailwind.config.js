@@ -7,6 +7,9 @@ export default {
    theme: {
     extend: {
       colors: {
+        slack: {
+          DEFAULT: '#5c3b58'
+        },
         background: "var(--background)",
         foreground: "var(--foreground)",
         card: "var(--card)",

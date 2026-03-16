@@ -1,8 +1,16 @@
 import React from 'react'
 
-const Auth = () => {
+const Auth = ({children}) => {
   return (
-    <div>Auth</div>
+    <div className='h-[100vh] flex items-center justify-center bg-slack' >
+      
+      <div className="md:h-auto md:w-[420px]">
+
+        {children}
+
+      </div>
+
+    </div>
   )
 }
 

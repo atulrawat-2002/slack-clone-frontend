@@ -21,6 +21,7 @@ function App() {
 
           <Route path='/auth/signup' element={<Auth> <SignupCard /> </Auth>} />
           <Route path='/auth/signin' element={<Auth> <SigninCard /> </Auth>} />
+          <Route path='/home' element={<h1> Home </h1>} />
           <Route path='/*' element={<Notfound />} />
 
         </Routes>

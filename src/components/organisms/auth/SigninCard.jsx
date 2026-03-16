@@ -2,10 +2,12 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
-import { useSignup } from '@/hooks/apis/auth/useSignup'
-import { TriangleAlert } from 'lucide-react'
-import React, { useState } from 'react'
+import { useSignin } from '@/hooks/apis/auth/useSignin'
+import { LucideLoader2, TriangleAlert } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { FaCheck } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+
 
 const SigninCard = () => {
 
@@ -17,23 +19,42 @@ const SigninCard = () => {
     })
 
     const [validationError, setValidationError] = useState(null);
-    const { isPending, isSuccess, error, signupMutation } = useSignup();
+    const { isPending, isSuccess, error, signinMutation } = useSignin();
  
-    async function onSignupFormSubmit(e) {
+    async function onSigninFormSubmit(e) {
         e.preventDefault();
+        console.log('sending request for signin')
 
         if( !signinForm.email || !signinForm.password ) {
             console.error('All fields are required');
+
+
             setValidationError({
                 message: 'All fields are required'
             })
             return;
         }
 
+        await signinMutation({
+            email: signinForm.email,
+            password: signinForm.password
+        })
         setValidationError(null)
+        
 
     }
 
+    useEffect(() => {
+
+        if(isSuccess) {
+            setTimeout(() => {
+                navigate('/home')
+            }, 2000);
+        }
+            
+
+    }, [isSuccess])
+ 
   return (
     <Card className="w-full h-full" >
 
@@ -48,12 +69,31 @@ const SigninCard = () => {
                         <p className='text-red-500' >  {validationError?.message} </p>
                 </div>
             )
+            }
+
+            {
+            error && (
+                <div className='bg-red-300/15 flex items-center gap-x-2 p-5 rounded-md mb-6 ' >
+                        <TriangleAlert size="20" className='text-red-400' />
+                        <p className='text-red-500' >  {error?.message} </p>
+
+                </div>
+            )
+            }
+
+        {
+            isSuccess && <div className='bg-slate-300 p-2 rounded-md flex flex-row text-slate-900 items-center gap-x-2 text-sm text-primary mb-5'  >
+                <FaCheck />
+                <p>Successfully signed in. You will be redirected to login page</p>
+                <LucideLoader2 className='animate-spin' />
+
+            </div>
         }
 
         </CardHeader>
 
         <CardContent>
-            <form className='space-y-4' onSubmit={onSignupFormSubmit}>
+            <form className='space-y-4' onSubmit={onSigninFormSubmit}>
 
                     <Input 
                         placeholder='email'
@@ -64,7 +104,7 @@ const SigninCard = () => {
                         })}
                         value={signinForm.email}
                         type='email'
-                        disabled={false}
+                        disabled={isPending}
                     />
                     <Input 
                         placeholder='password'
@@ -75,14 +115,14 @@ const SigninCard = () => {
                         })}
                         value={signinForm.password}
                         type='password'
-                        disabled={false}
+                        disabled={isPending}
                     />
                     
 
                     <Button
                         size='lg'
                         type="submit"
-                        disabled={false}
+                        disabled={isPending}
                         className="w-full"
                     > Continue </Button>
 

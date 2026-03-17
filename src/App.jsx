@@ -1,11 +1,8 @@
-import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Auth from './pages/auth/Auth'
-import SignupCard from './components/organisms/auth/SignupCard'
-import SigninCard from './components/organisms/auth/SigninCard'
-import Notfound from './pages/Notfound/Notfound'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from "@/components/ui/sonner"
+import { AppContextProvider } from './context/AppContextProvider'
+import AppRoutes from './Routes';
 
 function App() {
 
@@ -16,15 +13,15 @@ function App() {
        
       
         <QueryClientProvider client={queryClient} >
+
+          <AppContextProvider>
+
+            <AppRoutes />
+
           <Toaster position="top-center" className="text-black"/>
-        <Routes>
 
-          <Route path='/auth/signup' element={<Auth> <SignupCard /> </Auth>} />
-          <Route path='/auth/signin' element={<Auth> <SigninCard /> </Auth>} />
-          <Route path='/home' element={<h1> Home </h1>} />
-          <Route path='/*' element={<Notfound />} />
+          </AppContextProvider>
 
-        </Routes>
         </QueryClientProvider>
 
      </>

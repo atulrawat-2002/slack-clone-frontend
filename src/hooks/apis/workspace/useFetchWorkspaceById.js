@@ -1,13 +1,13 @@
-const { fetchWorkspaceDetailsRequest } = require("@/apis/workspace")
-const { useAuth } = require("@/hooks/context/useAuth")
-const { useQuery } = require("@tanstack/react-query")
+import { fetchWorkspaceDetailsRequest }  from "@/apis/workspace"
+import { useAuth } from "@/hooks/context/useAuth"
+import { useQuery } from  "@tanstack/react-query"
 
-export const useFetchWorkspaceById = () => {
+export const useFetchWorkspaceById = (id) => {
 
     const { auth } = useAuth();
 
     const { isFetching, isSuccess, error, data: workspace,  } = useQuery({
-        queryFn: (id) => fetchWorkspaceDetailsRequest({ workspaceId: id , token: auth?.token}),
+        queryFn: () => fetchWorkspaceDetailsRequest({ workspaceId: id , token: auth?.token}),
         queryKey: [`fetWorkspaceById-${id}`],
         staleTime: 10000
     })
@@ -15,6 +15,7 @@ export const useFetchWorkspaceById = () => {
     return { 
         isFetching, 
         isSuccess, 
-        error, workspace 
+        error, 
+        workspace 
     }
 }

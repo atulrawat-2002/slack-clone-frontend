@@ -10,14 +10,16 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useAuth } from '@/hooks/context/useAuth'
 import { toast } from "sonner";
-import { LogOutIcon, SettingsIcon } from 'lucide-react';
+import { LogOutIcon, PencilIcon, SettingsIcon } from 'lucide-react';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useCreateWorkspaceModal } from '@/hooks/context/useCreateWorkspaceModal';
 
 const UserButton = () => {
 
     const { auth, logout } = useAuth();
     const navigate = useNavigate()
+    const { setOpenCreateWorkspaceModal} = useCreateWorkspaceModal();
 
     async function handleLogout() {
         await logout();
@@ -29,6 +31,10 @@ const UserButton = () => {
           },
         })
         navigate('/auth/signin')
+    }
+
+    function openWorkspaceCreateModal() {
+        setOpenCreateWorkspaceModal(true);
     }
 
   return (
@@ -54,10 +60,17 @@ const UserButton = () => {
         Logout
 
       </DropdownMenuItem>
+
       <DropdownMenuItem>
 
         <SettingsIcon className='size-4 mr-2' />
         Setting
+
+      </DropdownMenuItem>
+      <DropdownMenuItem onClick={openWorkspaceCreateModal} >
+
+        <PencilIcon className='size-4 mr-2' />
+        Create Worksace
 
       </DropdownMenuItem>
     </DropdownMenuGroup>

@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from "@/components/ui/sonner"
 import { AppContextProvider } from './context/AppContextProvider'
 import AppRoutes from './Routes';
+import Modals from './components/organisms/modals/Modals';
 
 function App() {
 
@@ -17,6 +18,8 @@ function App() {
           <AppContextProvider>
 
             <AppRoutes />
+
+            <Modals />
 
           <Toaster position="top-center" className="text-black"/>
 

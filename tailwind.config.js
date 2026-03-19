@@ -8,7 +8,8 @@ export default {
     extend: {
       colors: {
         slack: {
-          DEFAULT: '#5c3b58'
+          DEFAULT: '#5c3b58',
+          DARK: '#481349'
         },
         background: "var(--background)",
         foreground: "var(--foreground)",

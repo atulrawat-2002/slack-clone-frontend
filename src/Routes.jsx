@@ -5,6 +5,7 @@ import SignupCard from './components/organisms/auth/SignupCard'
 import Notfound from './pages/Notfound/Notfound'
 import SigninCard from './components/organisms/auth/SigninCard'
 import ProtectedRoute from './components/molecules/protectedRoutes/ProtectedRoute'
+import Home from './pages/home/Home'
 
 const AppRoutes = () => {
   return (
@@ -14,7 +15,7 @@ const AppRoutes = () => {
 
           <Route path='/auth/signup' element={<Auth> <SignupCard /> </Auth>} />
           <Route path='/auth/signin' element={<Auth> <SigninCard /> </Auth>} />
-          <Route path='/home' element={ <ProtectedRoute> <h1> Home </h1> </ProtectedRoute> } />
+          <Route path='/home' element={ <ProtectedRoute> <Home /> </ProtectedRoute> } />
           <Route path='/*' element={<Notfound />} />
 
         </Routes> 

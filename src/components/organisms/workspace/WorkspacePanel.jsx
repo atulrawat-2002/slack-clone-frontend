@@ -1,4 +1,4 @@
-import { WorkspacePanelHeader } from '@/components/molecules/workspacePanelHeader/WorkspacePanelHeader';
+import { WorkspacePanelHeader } from '@/components/molecules/workspace/WorkspacePanelHeader';
 import { useFetchWorkspaceById } from '@/hooks/apis/workspace/useFetchWorkspaceById';
 import { AlertTriangleIcon, Loader } from 'lucide-react';
 import React from 'react'

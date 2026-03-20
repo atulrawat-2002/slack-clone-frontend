@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { userFetchWorkspace } from '@/hooks/apis/workspace/useFetchWorksace';
 import { useFetchWorkspaceById } from '@/hooks/apis/workspace/useFetchWorkspaceById';
 import { Loader } from 'lucide-react';
@@ -22,7 +22,7 @@ export const WorkspaceSwitcher = () => {
   return (
     <DropdownMenu>
 
-    <DropdownMenuTrigger>
+    <DropdownMenuTrigger >
 
         <Button className="size-9 relative overflow-hidden bg-[#ABABAD] hover:bg-[#ABABAD]/80 font-semibold text-slate-800 text-xl" >
 

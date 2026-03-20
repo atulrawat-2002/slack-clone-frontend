@@ -7,13 +7,10 @@ const Home = () => {
 
   const { isFetching, workSpaces }  = userFetchWorkspace()
   const navigate = useNavigate();
-  console.log(workSpaces);
 
   useEffect(() => {
 
     if(isFetching) return;
-
-    console.log("These are workspaces ", workSpaces);
 
     if(workSpaces.length === 0 || !workSpaces) {
       console.log('NO workspaces found!')

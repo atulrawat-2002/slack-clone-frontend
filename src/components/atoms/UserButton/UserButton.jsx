@@ -51,6 +51,7 @@ const UserButton = () => {
     </Avatar>
 
   </DropdownMenuTrigger>
+  
   <DropdownMenuContent>
     <DropdownMenuGroup>
       <DropdownMenuLabel>My Account</DropdownMenuLabel>

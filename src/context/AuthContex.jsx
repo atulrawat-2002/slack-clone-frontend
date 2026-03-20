@@ -19,7 +19,7 @@ export const AuthContexProvider = ({children}) => {
         if(user && token) {
             setAuth({
                 user: JSON.parse(user),
-                token,
+                token: JSON.parse(token) ,
                 isLoading: false
             })
         } else {

@@ -8,7 +8,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { userCreateWorkspace } from "@/hooks/apis/workspace/userCreateWorkspace";
 import { useCreateWorkspaceModal } from "@/hooks/context/useCreateWorkspaceModal"
-import { useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -20,6 +21,7 @@ export const CreateWorkspaceModal = () => {
     const [workspaceName, setWorkspaceName] = useState('');
     const { isPending, error, createWorkspaceMutation } = userCreateWorkspace();
     const navigate = useNavigate();
+    const queryClient = useQueryClient()
 
     function handleClose() {
         setOpenCreateWorkspaceModal(false);
@@ -30,6 +32,7 @@ export const CreateWorkspaceModal = () => {
             
             e.preventDefault();
             const data = await createWorkspaceMutation({name: workspaceName});
+            queryClient.invalidateQueries('fetchWorkspace')
             console.log(" created workspace ",data);
             navigate(`/workspace/${data?._id}`);
 

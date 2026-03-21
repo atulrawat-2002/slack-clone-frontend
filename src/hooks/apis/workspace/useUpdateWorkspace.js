@@ -6,7 +6,9 @@ export const useUpdateWorkspace = (workspaceId) => {
     const { auth } = useAuth();
 
     const { isPending, isSuccess, error, mutateAsync: updateWorkspaceMutation } = useMutation({
-        mutationFn: (name) => updateWorkspaceRequest({ workspaceId, name, token: auth?.token }),
+        mutationFn: (name) => {
+            return updateWorkspaceRequest({ workspaceId, name, token: auth?.token })
+        },
         onSuccess: () => {
             console.log("Workspace updaated successfullt")
         },

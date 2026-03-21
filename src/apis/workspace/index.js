@@ -81,7 +81,9 @@ export const deleteWorkspaceRequest = async ({ workspaceId, token }) => {
 export const updateWorkspaceRequest = async ({ workspaceId, name, token }) => {
     try {
         
-        const response = await axiosConfig.put(`/workspace/${workspaceId}`, {name}, {
+        const response = await axiosConfig.put(`/workspace/${workspaceId}`, {
+            name
+        }, {
             headers: {
                 'x-access-token': token
             }

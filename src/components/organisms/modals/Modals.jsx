@@ -1,3 +1,4 @@
+import { CreateChannelModal } from "@/components/molecules/createChannelModal/createChannelModal"
 import { CreateWorkspaceModal } from "@/components/molecules/createWorkspaceModal/CreateWorkspaceModal"
 import { WorkspacePrefrencesModal } from "@/components/molecules/workspace/WorkspacePrefrencesModal"
 
@@ -7,6 +8,7 @@ const Modals = () => {
 
       <CreateWorkspaceModal />
       <WorkspacePrefrencesModal />
+      <CreateChannelModal />
     </>
   )
 }

@@ -2,9 +2,11 @@ import CombinedContext from '@/utils/CombinedContext'
 import { AuthContexProvider } from './AuthContex'
 import { CreateWorkspaceProvider } from './CreateWorkspaceContext'
 import { WorkspacePrefrencesModalContextProvider } from './WorkspacePreferencesModalContext'
+import { CreateChannelContextProvider } from './CreateChannleContext'
 
 export const AppContextProvider = CombinedContext(
     AuthContexProvider,
     CreateWorkspaceProvider,
-    WorkspacePrefrencesModalContextProvider
+    WorkspacePrefrencesModalContextProvider,
+    CreateChannelContextProvider
 )

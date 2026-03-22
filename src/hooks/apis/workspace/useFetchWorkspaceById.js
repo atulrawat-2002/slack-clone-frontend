@@ -3,7 +3,6 @@ import { useAuth } from "@/hooks/context/useAuth"
 import { useQuery } from  "@tanstack/react-query"
 
 export const useFetchWorkspaceById = (id) => {
-
     const { auth } = useAuth();
 
     const { isFetching, isSuccess, error, data: workspace,  } = useQuery({

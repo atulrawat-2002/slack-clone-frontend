@@ -7,7 +7,7 @@ import { useWorkspacePrefrencesModal } from "@/hooks/context/useWorkspacePrefere
 import { useConfirm } from "@/hooks/useConfirm";
 import { useQueryClient } from "@tanstack/react-query";
 import { TrashIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -15,8 +15,8 @@ export const WorkspacePrefrencesModal = () => {
 
     const {initialValue, openPrefrences, setOpenPrefrences, workspace} = useWorkspacePrefrencesModal();
 
-    const [editOpen, setEditOpen] = useState();
-    const [renameValue, setRenameValue] = useState(initialValue);
+    const [editOpen, setEditOpen] = useState(false);
+    const [renameValue, setRenameValue] = useState(workspace?.name);
     
     const { deleteWorkspaceMutation } = useDeleteWorkspace(workspace?._id);
     const {isPending, updateWorkspaceMutation} = useUpdateWorkspace(workspace?._id);
@@ -94,6 +94,10 @@ export const WorkspacePrefrencesModal = () => {
         })
         }
     }
+
+    useEffect(() => {
+
+    })
 
   return (
 

@@ -20,12 +20,12 @@ export const useSignin = () => {
             })
 
             toast("signed in successfully", {
-          description: "Sunday, December 03, 2023 at 9:00 AM",
-          action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
-          },
-        })
+              description: "Sunday, December 03, 2023 at 9:00 AM",
+              action: {
+                label: "Undo",
+                onClick: () => console.log("Undo"),
+              },
+            })
         },
         onError: (error) => {
             console.log("Error in use signin hook ", error)

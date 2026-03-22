@@ -96,3 +96,35 @@ export const updateWorkspaceRequest = async ({ workspaceId, name, token }) => {
         console.log("Error in update workspace request", error)
     }
 }
+
+export const addChannelToWorkspaceRequest = async ( { workspaceId, channelName, token } ) => {
+    try {
+        
+        const response = await axiosConfig.put(`/workspace/${workspaceId}/channels`, {channelName}, {
+            headers: {
+                'x-access-token': token
+            }
+        })
+
+        return response?.data?.data;
+
+    } catch (error) {
+        console.log('Error in add channel to workspace request', error.message);
+    }
+}
+
+export const resetWorkspaceJoinCodeRequest = async ({ workspaceId, token }) => {
+    try {
+        
+        const response = await axiosConfig.put(`/workspace/${workspaceId}/joincode/reset`,{}, {
+            headers: {
+                'x-access-token': token
+            }
+        })
+
+        return response?.data?.data;
+
+    } catch (error) {
+        console.log('Error in reset workspace join code request', error.message);
+    }
+}

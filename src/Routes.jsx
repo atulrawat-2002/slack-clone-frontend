@@ -18,6 +18,7 @@ const AppRoutes = () => {
           <Route path='/auth/signin' element={<Auth> <SigninCard /> </Auth>} />
           <Route path='/home' element={ <ProtectedRoute> <Home /> </ProtectedRoute> } />
           <Route path='/workspace/:workspaceId' element={ <ProtectedRoute> <WorksaceLayout> Workspace </WorksaceLayout> </ProtectedRoute> } />
+          <Route path='/workspace/:workspaceId/channels/:channelId' element={ <ProtectedRoute> <h2>channel</h2> </ProtectedRoute> } />
           <Route path='/*' element={<Notfound />} />
 
         </Routes> 

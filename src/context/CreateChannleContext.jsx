@@ -7,7 +7,7 @@ export const CreateChannelContextProvider = ( { children } ) => {
     const [openCreateChannelModal, setOpenCreateChannelModal] = useState(false);
 
     return (
-        <createChannelContext.Provider vlaue={{ openCreateChannelModal, setOpenCreateChannelModal }} >
+        <createChannelContext.Provider value={{ openCreateChannelModal, setOpenCreateChannelModal }} >
 
             {children}
 

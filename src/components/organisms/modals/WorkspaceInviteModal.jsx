@@ -9,7 +9,7 @@ export const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, work
     const { resetJoinCodeMutation, isPending, isSuccess} = useResetJoinCode(workspaceId);
 
     async function handleCopy() {
-        const iniviteLink = `${window.location.origin}/join/${joinCode}`;
+        const iniviteLink = `${joinCode}`;
         await navigator.clipboard.writeText(iniviteLink);
         toast("Link Copied", {
               description: "Sunday, December 03, 2023 at 9:00 AM",
@@ -56,6 +56,16 @@ export const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, work
                     Copy Link
                     <CopyIcon  className="size-4 ml-2" />
                 </Button>
+
+                <a 
+                href={`/workspace/join/${workspaceId}`} 
+                target="_atul"
+                rel="noreferrer"
+                className="text-blue-500"
+                >
+                    Redirect to join page
+                </a>
+
             </div>
 
             <div className="flex items-center w-full justify-center ">

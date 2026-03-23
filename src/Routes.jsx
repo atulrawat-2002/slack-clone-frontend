@@ -7,6 +7,7 @@ import SigninCard from './components/organisms/auth/SigninCard'
 import ProtectedRoute from './components/molecules/protectedRoutes/ProtectedRoute'
 import Home from './pages/home/Home'
 import { WorksaceLayout } from './pages/workspace/Layout'
+import { JoinPage } from './pages/workspace/JoinPage'
 
 const AppRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const AppRoutes = () => {
           <Route path='/home' element={ <ProtectedRoute> <Home /> </ProtectedRoute> } />
           <Route path='/workspace/:workspaceId' element={ <ProtectedRoute> <WorksaceLayout> Workspace </WorksaceLayout> </ProtectedRoute> } />
           <Route path='/workspace/:workspaceId/channels/:channelId' element={ <ProtectedRoute> <h2>channel</h2> </ProtectedRoute> } />
+          <Route path='/workspace/join/:workspaceId' element={<ProtectedRoute> <JoinPage /> </ProtectedRoute>} />
           <Route path='/*' element={<Notfound />} />
 
         </Routes> 

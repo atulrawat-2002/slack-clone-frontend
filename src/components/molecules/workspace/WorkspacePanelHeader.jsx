@@ -22,6 +22,7 @@ export const WorkspacePanelHeader = ({ workspace }) => {
 
     useEffect(() => {
         setWorkspace(workspace)
+        console.log("Loggedin user is admin or not", isLoggedInUserAdminOfWorkspace)
     }, [])
 
   return (

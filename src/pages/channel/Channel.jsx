@@ -26,14 +26,11 @@ export const Channel = () => {
 
     useEffect(() => {
         if(messageListRef.current) {
-            console.log("before", messageListRef.current.scrollTop)
             messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
-            console.log("after", messageListRef.current.scrollTop)
         }
     }, [messageList])
 
     useEffect(() => {
-        console.log('ChannelId', channelId);
         queryClient.invalidateQueries('getPaginatedMessages');
     }, [channelId]);
 
@@ -45,8 +42,8 @@ export const Channel = () => {
 
     useEffect(() => {
         if(isSuccess ) {
-            console.log('Channel Messages fetched');
-            setMessageList(messages);
+            console.log("fetched messages ", messages)
+            setMessageList(messages.reverse());
         }
     }, [isSuccess, messages, setMessageList, channelId]);
 
@@ -80,7 +77,7 @@ export const Channel = () => {
             ref={messageListRef}
             className="flex-5 overflow-y-auto p-5 gap-y-2"
             >
-                 {messageList?.reverse().map((message) => {
+                 {messageList?.map((message) => {
                 return <Message key={message._id} body={message.body} authorImage={message.senderId?.avatar} authorName={message.senderId?.username} createdAt={message.createdAt} image={message?.image}  />;
             })} 
             </div>

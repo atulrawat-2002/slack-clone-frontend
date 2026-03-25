@@ -18,13 +18,13 @@ export const getChannelByIdrequest = async ({ channelId, token }) => {
     }
 }
 
-export const getPaginatedMessagesRequest = async ({ channelId, workSpaceId, limit, offset, token }) => {
+export const getPaginatedMessagesRequest = async ({ channelId, workSpaceId, limit, page, token }) => {
     try { 
         
         const response = await axiosConfig.get(`/messages/${channelId}/${workSpaceId}`, {
             params: {
                 limit: limit || 20,
-                offset: offset || 1
+                page: page || 1
             },
             headers: {
                 'x-access-token': token

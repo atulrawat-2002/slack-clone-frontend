@@ -1,6 +1,6 @@
 import 'quill/dist/quill.snow.css'; // ES6
 
-import { ImageIcon } from 'lucide-react';
+import { ImageIcon, XIcon } from 'lucide-react';
 import Quill from 'quill';
 import { useEffect, useRef, useState } from 'react';
 import { PiTextAa } from 'react-icons/pi';
@@ -8,6 +8,9 @@ import { IoSend } from "react-icons/io5";
 
 import { Button } from '@/components/ui/button';
 import { Hint } from '../Hint/Hint';
+import { useSocket } from '@/hooks/context/useSocket';
+import { useAuth } from '@/hooks/context/useAuth';
+import { useCurrentWorkspace } from '@/hooks/context/useCurrentWorkspace';
 
 export const Editor = ({
     variant = 'create',
@@ -19,10 +22,16 @@ export const Editor = ({
 }) => {
 
     const [isToolbarVisible, setIsToolbarVisible] = useState(false);
+    const [image, setImage] = useState(null)
+
+    const { socket, currentChannel } = useSocket();
+    const {auth} = useAuth();
+    const { currentWorkspace } = useCurrentWorkspace();
 
     const containerRef = useRef();
     const defaultValueRef = useRef();
     const quillRef = useRef();
+    const imageInputref = useRef(null);
 
     function toggleToolbar() {
         setIsToolbarVisible(!isToolbarVisible);
@@ -30,6 +39,44 @@ export const Editor = ({
         if (toolbar) {
             toolbar.classList.toggle('hidden');
         }
+    }
+
+    function handleSubmit({body, image} ) {
+        if(!image) {
+            console.log("without image ", image);
+            socket.emit('newMessage', {
+                channelId: currentChannel,
+                body,
+                    senderId: auth?.user?._id,
+                    workSpaceId: currentWorkspace?._id
+                }, (data) => {
+                    console.log('Message sent', data);
+                    setImage(null)
+                    imageInputref.current.value = '';
+                })
+                return;
+        } else {
+            console.log("with image ", image);
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(image);
+            fileReader.onload = () => {
+            if(fileReader.readyState === fileReader.DONE) {
+                socket.emit('newMessage', {
+                    channelId: currentChannel,
+                    body,
+                    image: fileReader.result,
+                    senderId: auth?.user?._id,
+                    workSpaceId: currentWorkspace?._id
+                }, (data) => {
+                    console.log('Message sent', data);
+                    setImage(null)
+                    imageInputref.current.value = '';
+                })
+            }
+        }
+        return;
+    }
+        
     }
 
     useEffect(() => {
@@ -89,6 +136,28 @@ export const Editor = ({
                 
                 <div className='h-full ql-custom' ref={containerRef} />
 
+                {
+                    image && (
+                        <div className="p-2 ">
+                            
+                            <div className="relative size-[60px] items-center justify-center group/image">
+                                <button className='hidden group-hover/image:flex rounded-full bg-black/70 hover:bg-black absolute -top-2.5 -right-2.5 text-white size-6 z-50 border-2 border-white items-center justify-center' 
+                                onClick={() => {
+                                    setImage(null)
+                                    imageInputref.current.value = '';
+                                }}
+                                >
+                                    <XIcon className='size-4 ' />
+                                </button>
+                                <img src={URL.createObjectURL(image)} alt="" 
+                                    className='rounded-xl overflow-hidden border object-cover'
+                                />
+                            </div>
+
+                        </div>
+                    )
+                }
+
                 <div className='flex w-full px-2 pb-2 z-[5]'>
 
                 <div className="flex gap-1 flex-1" >
@@ -112,11 +181,18 @@ export const Editor = ({
                             size="iconSm"
                             variant="ghost"
                             disabled={false}
-                            onClick={() => {}}
+                            onClick={() => { imageInputref.current.click() }}
                         >
                             <ImageIcon className='size-4' />
                         </Button>
                     </Hint>
+
+                    <input 
+                        ref={imageInputref}
+                        className='hidden'
+                        type="file" 
+                        onChange={e => setImage(e.target.files[0])}
+                    />
 
                 </div>
 
@@ -126,7 +202,7 @@ export const Editor = ({
                             className="ml-auto bg-[#007a6a] hover:bg-[#007a6a]/80 text-white"
                             onClick={() => {
                                 const messageContent = JSON.stringify(quillRef?.current.getContents())
-                                onSubmit({body: messageContent});
+                                handleSubmit({body: messageContent, image: image});
                                 quillRef.current?.setText('');
                             }}
                             disabled={false}

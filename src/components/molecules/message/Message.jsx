@@ -40,7 +40,7 @@ export const Message = ({ authorImage, authorName, createdAt, body, image }) => 
 
             <MessageRenderer value={body} />
 
-           {image && <MessageImageThumbnail url={image} />} 
+           {image && <MessageImageThumbnail url={image?.url} />} 
 
         </div>
 

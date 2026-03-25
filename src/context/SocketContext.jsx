@@ -13,16 +13,13 @@ export const SocketContexProvider = ({ children }) => {
     const { messageList, setMessageList } = useChannelMessages();
 
      socket.on('newMessageReceived', (data) => {
-        console.log('New message received', data);
         setMessageList([...messageList, data]);
     });
 
 
     async function joinChannel(channelId) {
         socket.emit('joinChannel', { channelId }, (data) => {
-            
-            console.log('joined the channel', data)
-            setCurrentChannel(data?.data)
+                        setCurrentChannel(data?.data)
         });
     }
 

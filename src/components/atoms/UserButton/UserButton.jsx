@@ -10,16 +10,18 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useAuth } from '@/hooks/context/useAuth'
 import { toast } from "sonner";
-import { LogOutIcon, PencilIcon, SettingsIcon } from 'lucide-react';
-import React from 'react'
+import { LogOutIcon, PencilIcon, RssIcon, SettingsIcon } from 'lucide-react';
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useCreateWorkspaceModal } from '@/hooks/context/useCreateWorkspaceModal';
+import { useAllExistingWorkspacesModal } from '@/hooks/context/useAllExistingWorkspaceModal';
 
 const UserButton = () => {
 
     const { auth, logout } = useAuth();
     const navigate = useNavigate()
     const { setOpenCreateWorkspaceModal} = useCreateWorkspaceModal();
+    const { toggleAllExistingWorkspacesModal, setToggleAllExistingWorkspacesModal } = useAllExistingWorkspacesModal()
 
     async function handleLogout() {
         await logout();
@@ -36,6 +38,10 @@ const UserButton = () => {
     function openWorkspaceCreateModal() {
         setOpenCreateWorkspaceModal(true);
     }
+
+     useEffect(() => {
+        console.log("AllExistingWorkspacesModal open:", toggleAllExistingWorkspacesModal)
+      }, [toggleAllExistingWorkspacesModal])
 
   return (
     <>
@@ -57,21 +63,27 @@ const UserButton = () => {
       <DropdownMenuLabel>My Account</DropdownMenuLabel>
       <DropdownMenuItem onClick={handleLogout} >
 
-        <LogOutIcon  className='size-4 mr-2' />
+        <LogOutIcon  className='size-4 mr-2 cursor-pointer' />
         Logout
 
       </DropdownMenuItem>
 
       <DropdownMenuItem>
 
-        <SettingsIcon className='size-4 mr-2' />
+        <SettingsIcon className='size-4 mr-2 cursor-pointer' />
         Setting
 
       </DropdownMenuItem>
       <DropdownMenuItem onClick={openWorkspaceCreateModal} >
 
-        <PencilIcon className='size-4 mr-2' />
+        <PencilIcon className='size-4 mr-2 cursor-pointer' />
         Create Worksace
+
+      </DropdownMenuItem>
+      <DropdownMenuItem  onClick={() => setToggleAllExistingWorkspacesModal(prev => !prev)}>
+
+        <RssIcon className='size-4 mr-2 cursor-pointer'  />
+        Join A Worksace
 
       </DropdownMenuItem>
     </DropdownMenuGroup>

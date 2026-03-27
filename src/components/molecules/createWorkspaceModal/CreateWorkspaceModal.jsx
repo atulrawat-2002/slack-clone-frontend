@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { userCreateWorkspace } from "@/hooks/apis/workspace/userCreateWorkspace";
 import { useCreateWorkspaceModal } from "@/hooks/context/useCreateWorkspaceModal"
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -46,12 +46,12 @@ export const CreateWorkspaceModal = () => {
             console.log("open state after", openCreateWorkspaceModal)
         }
     }
-
     
 
     return <Dialog
         open={openCreateWorkspaceModal}
         onOpenChange={handleClose}
+        className='relative z-10'
     >
 
         <DialogContent>

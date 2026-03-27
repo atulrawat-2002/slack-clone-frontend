@@ -12,6 +12,7 @@ export const WorkspacePanelHeader = ({ workspace }) => {
 
     const { auth } = useAuth();
     const [openInviteModal, setOpenInviteModal] = useState(false);
+    const [toggleModalByEditIcon, setToggleModalByEditIcon] = useState(false)
 
     const isLoggedInUserAdminOfWorkspace = workspaceMembers.find(member => {
         // comparing with memberId not with ._id
@@ -35,7 +36,7 @@ export const WorkspacePanelHeader = ({ workspace }) => {
         />
         <div className='flex items-center justify-between px-4 h-[50px] gap-0.5 ' >
         
-        <DropdownMenu>
+        <DropdownMenu open={toggleModalByEditIcon} onOpenChange={setToggleModalByEditIcon} >
 
             <DropdownMenuTrigger>
 
@@ -64,7 +65,7 @@ export const WorkspacePanelHeader = ({ workspace }) => {
                 </DropdownMenuItem>
 
                 {
-                    isLoggedInUserAdminOfWorkspace && (
+                    toggleModalByEditIcon && (isLoggedInUserAdminOfWorkspace && (
                         <>
 
                             <DropdownMenuItem 
@@ -77,12 +78,14 @@ export const WorkspacePanelHeader = ({ workspace }) => {
                                 Prefrences
                             </DropdownMenuItem>
                                     <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={() => setOpenInviteModal(!openInviteModal)} className="cursor-pointer py-2" > 
+                            
+                               <DropdownMenuItem onClick={() => setOpenInviteModal(!openInviteModal)}  className="cursor-pointer py-2" > 
                                 Invite People to {workspace?.name}
-                            </DropdownMenuItem>
+                                </DropdownMenuItem>
+                            
 
                         </>
-                    )
+                    ))
                 }
 
             </DropdownMenuContent>
@@ -91,13 +94,17 @@ export const WorkspacePanelHeader = ({ workspace }) => {
 
         <div className="flex items-center gap-0.5 text-white"> 
 
-                <Button variant='transparent ' size='iconSm' >
+                {/* <Button variant='transparent ' size='iconSm' >
                 <ListFilterIcon className='size-5' />
 
-                </Button>
+                </Button> */}
 
-                <Button variant='transparent ' size='iconSm' >
-                <SquarePenIcon className='size-5' />
+                <Button variant='transparent ' size='iconSm' 
+                onClick={() => {
+                    setToggleModalByEditIcon(prev => !prev)
+                }}
+                >
+                <SquarePenIcon  className='size-5' />
 
                 </Button>
 

@@ -56,7 +56,7 @@ const SignupCard = () => {
         console.log('console log inside useeffect of signup');
         if(isSuccess) {
             setTimeout(() => {
-                navigate('/auth/signin');
+                navigate('/home');
             }, 3000);
         }
             

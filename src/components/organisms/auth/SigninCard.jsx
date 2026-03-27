@@ -14,8 +14,8 @@ const SigninCard = () => {
     const navigate = useNavigate();
 
     const [signinForm, setSigninForm] = useState({
-        email: 'atul@gmail.com',
-        password: 'atul@2002',
+        email: 'atul@email.com',
+        password: '1234',
     })
 
     const [validationError, setValidationError] = useState(null);

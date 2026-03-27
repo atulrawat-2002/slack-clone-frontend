@@ -36,9 +36,9 @@ export const WorkspacePanel = () => {
 
         <div className="flex flex-col ">
 
-            <SidebarItem label="Threads" icon={MessageSquareText} id={"threds"} variant='active' />
+            {/* <SidebarItem label="Threads" icon={MessageSquareText} id={"threads"} variant='active' /> */}
 
-            <SidebarItem label="Drafts & Sends" icon={SendHorizonalIcon} id={"drafts"} variant='default' />
+            {/* <SidebarItem label="Drafts & Sends" icon={SendHorizonalIcon} id={"drafts"} variant='default' /> */}
 
         </div>
 

@@ -6,13 +6,15 @@ import { CreateChannelContextProvider } from './CreateChannleContext'
 import { WorkspaceContextProvider } from './WorkspaceContext'
 import { SocketContexProvider } from './SocketContext'
 import { ChannelMessagesProvider } from './ChannelMessages'
+import { AllExistingWorkspacesProvider } from './AllExistingWorkspaceProvider'
 
 export const AppContextProvider = CombinedContext(
+    AllExistingWorkspacesProvider,
     ChannelMessagesProvider,
     SocketContexProvider,
     AuthContexProvider,
     CreateWorkspaceProvider,
     WorkspacePrefrencesModalContextProvider,
     CreateChannelContextProvider,
-    WorkspaceContextProvider
+    WorkspaceContextProvider,
 )

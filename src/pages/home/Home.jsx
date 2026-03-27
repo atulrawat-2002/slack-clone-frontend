@@ -1,5 +1,6 @@
 import UserButton from '@/components/atoms/UserButton/UserButton'
 import { userFetchWorkspace } from '@/hooks/apis/workspace/useFetchWorksace'
+import { useAllExistingWorkspacesModal } from '@/hooks/context/useAllExistingWorkspaceModal'
 import { useCreateWorkspaceModal } from '@/hooks/context/useCreateWorkspaceModal'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -8,11 +9,16 @@ const Home = () => {
 
   const { isFetching, workSpaces }  = userFetchWorkspace()
   const { setOpenCreateWorkspaceModal } = useCreateWorkspaceModal();
+  const { toggleAllExistingWorkspacesModal } = useAllExistingWorkspacesModal();
   const navigate = useNavigate();
 
   useEffect(() => {
 
     if(isFetching) return;
+
+    if(!workSpaces) return;
+
+    if(toggleAllExistingWorkspacesModal) return;
 
     if(workSpaces.length === 0 || !workSpaces) {
       console.log('NO workspaces found!');

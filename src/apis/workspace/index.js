@@ -45,7 +45,7 @@ export const fetchWorkspaceRequest = async ({ token }) => {
 export const fetchWorkspaceDetailsRequest = async ({ workspaceId, token }) => {
     try {
 
-        const response = await axiosConfig.get(`/workspace/${workspaceId}`, {
+        const response = await axiosConfig.get(`/workspace/get/${workspaceId}`, {
             headers: {
                 'x-access-token': token
             }
@@ -158,5 +158,23 @@ export const joinWorkspaceRqquest = async ( {workspaceId, joinCode, token} ) => 
         
     } catch (error) {
         console.log('Error in join workspace request', error.message);
+    }
+}
+
+export const getAllExistingWorkspaceRequest = async (token) => {
+    try {
+
+        const response = await axiosConfig.get(`/workspace/fetch/allWorkspaces`, {
+            headers: {
+                'x-access-token': token
+            }
+        });
+
+
+        return response?.data?.data;
+        
+    } catch (error) {
+        console.log('Error in get all existing workspace request', error.message);
+        return [];
     }
 }

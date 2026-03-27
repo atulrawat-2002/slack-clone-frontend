@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Auth from './pages/auth/Auth'
 import SignupCard from './components/organisms/auth/SignupCard'
 import Notfound from './pages/Notfound/Notfound'
@@ -15,6 +15,7 @@ const AppRoutes = () => {
     <>
 
        <Routes>
+          <Route path='/' element={<Navigate to='/auth/signin' replace />} />
 
           <Route path='/auth/signup' element={<Auth> <SignupCard /> </Auth>} />
 

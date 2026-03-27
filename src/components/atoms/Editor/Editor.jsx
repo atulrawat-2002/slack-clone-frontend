@@ -83,6 +83,8 @@ export const Editor = ({
 
         if (!containerRef.current) return;
 
+        console.log(containerRef.current)
+
         const container = containerRef.current;
 
         const editorContainer = container.appendChild(
@@ -127,6 +129,11 @@ export const Editor = ({
         quillRef.current.focus();
 
         quill.setContents(defaultValueRef.current);
+
+        return function() {
+            quillRef.current = null;
+            containerRef.current ? (containerRef.current.innerHTML = '') : null;
+        }
 
     }, []);
 

@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useFetchWorkspaceById } from "@/hooks/apis/workspace/useFetchWorkspaceById";
 import { useAuth } from "@/hooks/context/useAuth";
@@ -11,7 +12,7 @@ export const WorkspaceNavbar = () => {
   const { workspaceId } = useParams();
   const { isFetching, workspace, isSuccess, error } = useFetchWorkspaceById(workspaceId);
   const { setCurrentWorkspace } = useCurrentWorkspace()
-  const { logout } = useAuth();
+  const { logout, auth } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +28,7 @@ export const WorkspaceNavbar = () => {
     if(workspace) {
       setCurrentWorkspace(workspace);
     }
+
   }, [workspace, setCurrentWorkspace, isSuccess, isFetching, error])
 
   
@@ -40,25 +42,24 @@ export const WorkspaceNavbar = () => {
         
 
         <div className="flex-1" />
-      <div >
-        <Button size="sm" className="bg-gray-400/25 hover:bg-gray-950/15 justify-start h-7 px-2" >
+      <div className="" >
 
-          <SearchIcon className="text-white mr-2 size-5" />
-          <span className="text-white text-xs" >
+          <span className="text-white text-xl" >
             
-          Search {workspace?.name || 'Workspace'  }
+           Welcome { auth?.user?.username[0].toUpperCase()+auth?.user?.username.slice(1) } In 
+           
+           <span> {workspace?.name} </span>
 
         </span>
-        </Button>
         </div>
 
         <div className="ml-auto flex-1 flex items-center justify-end" >
-          <Button
-            variant="tranparent"
-            size="iconSm"
-          >
-            <InfoIcon className="size-5 text-white" />
-          </Button>
+          <Avatar className='size-10 hover:opacity-65 transition' >
+
+            <AvatarImage src={auth?.user?.avatar} />
+            <AvatarFallback> {auth?.user?.username[0].toUpperCase()} </AvatarFallback>
+
+        </Avatar>
           </div>
 
     </nav>

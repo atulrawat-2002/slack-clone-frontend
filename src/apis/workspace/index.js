@@ -147,7 +147,7 @@ export const addMemberToWorkspaceRequest = async ( { workspaceId, token } ) => {
 
 export const joinWorkspaceRqquest = async ( {workspaceId, joinCode, token} ) => {
         try {
-
+            
         const reponse = await axiosConfig.put(`/workspace/${workspaceId}/join`, { joinCode }, {
             headers: {
                 'x-access-token': token

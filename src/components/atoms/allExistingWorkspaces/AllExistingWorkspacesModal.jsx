@@ -1,8 +1,12 @@
+import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog'
+import { Separator } from '@/components/ui/separator'
 import { userGetAllExistingWorkspaces } from '@/hooks/apis/workspace/userGetAllExistingWorkspaces'
 import { useAllExistingWorkspacesModal } from '@/hooks/context/useAllExistingWorkspaceModal'
+import { useCurrentWorkspace } from '@/hooks/context/useCurrentWorkspace'
 import { useQueryClient } from '@tanstack/react-query'
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const AllExistingWorkspacesModal = () => {
 
@@ -11,13 +15,8 @@ export const AllExistingWorkspacesModal = () => {
 
     const { isFetching, isError, allExistingWorkspaces, isSuccess, getAllworkspaceFetch } = userGetAllExistingWorkspaces();
 
-    useEffect(() => {
 
-        if(isFetching) return;
-        
-        console.log(typeof allExistingWorkspaces, allExistingWorkspaces)
-
-    }, [toggleAllExistingWorkspacesModal])
+    const navigate = useNavigate()
 
     useEffect(() => {
         // queryClient.invalidateQueries('allExistingWorkspaces');
@@ -33,12 +32,26 @@ export const AllExistingWorkspacesModal = () => {
             <DialogContent>
 
                 <DialogHeader>
-                    LIst of workspaces
+                    <p className=' font-bold text-xl text-center' >  Current Workspaces </p>
                 </DialogHeader>
+
+
 
                 {
                     (isSuccess && allExistingWorkspaces) && allExistingWorkspaces?.map((item) => {
-                        return <div key={item?._id} > {item?.name} </div>
+                        return <div 
+                        key={item?._id} 
+                        className='bg-slate-300 p-1 rounded-md font-semibold flex justify-between items-center'
+                        > <span> {item?.name} </span> 
+
+                            <Button
+                                onClick={() => {
+                                    setToggleAllExistingWorkspacesModal(false);
+                                    navigate(`/workspace/join/${item?._id}`)
+                                }}
+                            > Join </Button>
+
+                         </div>
                     })
                 }
 

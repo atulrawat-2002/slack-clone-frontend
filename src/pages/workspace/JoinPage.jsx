@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useJoinWorkspace } from '@/hooks/apis/workspace/useJoinWorkspace';
-import React from 'react'
+import { useCurrentWorkspace } from '@/hooks/context/useCurrentWorkspace';
+import React, { useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import * as VerificationInputModule from "react-verification-input";
 import { toast } from 'sonner';
@@ -13,6 +14,7 @@ export const JoinPage = () => {
     const { workspaceId }  = useParams();
     const navigate = useNavigate();
     const { joinWorkspceMutation, isPending, isSuccess, error } = useJoinWorkspace(workspaceId);
+    const { currentWorkspace, setCurrentWorkspace } = useCurrentWorkspace();
 
     async function hanldeMemberToWorkspace(joinCode) {
         console.log("adding member to workspace", joinCode);
@@ -30,6 +32,10 @@ export const JoinPage = () => {
             console.log('Error in join page adding member ot workspace', error.message);
         }
     }
+
+    useEffect(() => {
+        console.log("current workspace ", currentWorkspace)
+    }, [])
 
     return (
         <div className='h-[100vh] flex flex-col gap-y-8 items-center justify-center p-8 bg-white rounded-lg shadow-sm'>
@@ -58,11 +64,13 @@ export const JoinPage = () => {
 
             <div className='felx gap-x-4' >
 
-                <Button variant='outline' size='lg' >
+                <p> Not have Join Code? Ask the Workspace Admin </p>
+
+                {/* <Button variant='outline' size='lg' >
                     <Link to={`/workspace/${workspaceId}`} > 
                         Back to the workspace
                     </Link>
-                </Button>
+                </Button> */}
 
             </div>
 

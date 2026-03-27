@@ -15,6 +15,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useCreateWorkspaceModal } from '@/hooks/context/useCreateWorkspaceModal';
 import { useAllExistingWorkspacesModal } from '@/hooks/context/useAllExistingWorkspaceModal';
+import { Hint } from '../hint/Hint';
 
 const UserButton = () => {
 
@@ -46,6 +47,7 @@ const UserButton = () => {
   return (
     <>
 
+    <Hint label="Menu" >
     <DropdownMenu>
   <DropdownMenuTrigger >
 
@@ -94,6 +96,9 @@ const UserButton = () => {
     </DropdownMenuGroup>
   </DropdownMenuContent>
 </DropdownMenu>
+
+    </Hint>
+
     </>
   )
 }

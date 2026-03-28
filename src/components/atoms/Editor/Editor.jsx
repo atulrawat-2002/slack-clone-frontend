@@ -7,10 +7,10 @@ import { PiTextAa } from 'react-icons/pi';
 import { IoSend } from "react-icons/io5";
 
 import { Button } from '@/components/ui/button';
-import { Hint } from '../Hint/Hint';
 import { useSocket } from '@/hooks/context/useSocket';
 import { useAuth } from '@/hooks/context/useAuth';
 import { useCurrentWorkspace } from '@/hooks/context/useCurrentWorkspace';
+import { Hint } from '../hint/Hint';
 
 export const Editor = ({
     variant = 'create',

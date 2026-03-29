@@ -14,9 +14,13 @@ const Home = () => {
 
   useEffect(() => {
 
+    console.log('Inside home')
+
     if(isFetching) return;
 
-    if(!workSpaces) return;
+    if(!workSpaces) {
+      console.log("Inside home and returning ", workSpaces)
+    }
 
     if(toggleAllExistingWorkspacesModal) return;
 

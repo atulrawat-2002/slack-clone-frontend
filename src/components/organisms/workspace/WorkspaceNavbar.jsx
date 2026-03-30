@@ -4,12 +4,13 @@ import { useFetchWorkspaceById } from "@/hooks/apis/workspace/useFetchWorkspaceB
 import { useAuth } from "@/hooks/context/useAuth";
 import { useCurrentWorkspace } from "@/hooks/context/useCurrentWorkspace";
 import { InfoIcon, LucideLoader2, SearchIcon } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 
 export const WorkspaceNavbar = () => {
 
   const { workspaceId } = useParams();
+  const [currentUserRole, setCurrentUserRole] = useState(null);
   const { isFetching, workspace, isSuccess, error } = useFetchWorkspaceById(workspaceId);
   const { setCurrentWorkspace } = useCurrentWorkspace()
   const { logout, auth } = useAuth();
@@ -26,6 +27,13 @@ export const WorkspaceNavbar = () => {
     }
 
     if(workspace) {
+
+      workspace?.members.forEach((item) => {
+        // console.log("item id ", item?._id)
+        if (item?.memberId?._id === auth?.user?._id) {
+          setCurrentUserRole(item?.role);
+        }
+      })
       setCurrentWorkspace(workspace);
     }
 
@@ -42,19 +50,20 @@ export const WorkspaceNavbar = () => {
         
 
         <div className="flex-1" />
-      <div className="" >
+
+      { currentUserRole &&  <div className="" >
 
           <span className="text-white text-xl" >
             
-           Welcome { auth?.user?.username[0].toUpperCase()+auth?.user?.username.slice(1) } In 
+           You ({ auth?.user?.username[0].toUpperCase()+auth?.user?.username.slice(1) }) are { currentUserRole  } in 
            
            <span> {workspace?.name} </span>
 
         </span>
-        </div>
+        </div>}
 
         <div className="ml-auto flex-1 flex items-center justify-end" >
-          <Avatar className='size-10 hover:opacity-65 transition' >
+          <Avatar className='size-10 hover:opacity-65 transition bg-slate-300' >
 
             <AvatarImage src={auth?.user?.avatar} />
             <AvatarFallback> {auth?.user?.username[0].toUpperCase()} </AvatarFallback>

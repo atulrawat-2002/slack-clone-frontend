@@ -105,6 +105,9 @@ export const Editor = ({
                         enter: {
                             key: 'Enter',
                             handler: () => {
+                                const messageContent = JSON.stringify(quillRef?.current.getContents())
+                                handleSubmit({body: messageContent, image: image});
+                                quillRef.current?.setText('');
                                 return;
                             }
                         },

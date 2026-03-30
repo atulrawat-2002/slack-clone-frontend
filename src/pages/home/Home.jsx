@@ -34,7 +34,7 @@ const Home = () => {
 
     if (workSpaces.length === 0 || !workSpaces) {
       console.log("NO workspaces found!");
-      // setOpenCreateWorkspaceModal(true);
+      setOpenCreateWorkspaceModal(true);
     } else {
       navigate(`/workspace/${workSpaces[0]._id}`);
     }
@@ -53,7 +53,7 @@ const Home = () => {
           <CardAction>
             
           </CardAction>
-          <CardTitle> <div className="font-semibold text-center text-2xl" >Hello Admin!</div> </CardTitle>
+          <CardTitle> <div className="font-semibold text-center text-2xl" >Hello {auth?.user?.username}!</div> </CardTitle>
           <CardDescription className="font-semibold my-3" >
             <p className="text-center my-5 text-xl" >Welcome to Slack-Messaging</p>
             <p>A platform to manage your team and enable official communication among members. </p>

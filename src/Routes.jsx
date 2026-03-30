@@ -23,7 +23,7 @@ const AppRoutes = () => {
 
           <Route path='/home' element={ <ProtectedRoute> <Home /> </ProtectedRoute> } />
 
-          <Route path='/workspace/:workspaceId' element={ <ProtectedRoute> <WorksaceLayout> Workspace </WorksaceLayout> </ProtectedRoute> } />
+          <Route path='/workspace/:workspaceId' element={ <ProtectedRoute> <WorksaceLayout>{false}</WorksaceLayout> </ProtectedRoute> } />
 
           <Route path='/workspace/:workspaceId/channels/:channelId' element={ <ProtectedRoute> <WorksaceLayout> <Channel /> </WorksaceLayout> </ProtectedRoute> } />
 

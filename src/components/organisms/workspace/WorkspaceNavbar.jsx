@@ -57,7 +57,7 @@ export const WorkspaceNavbar = () => {
             
            You ({ auth?.user?.username[0].toUpperCase()+auth?.user?.username.slice(1) }) are { currentUserRole  } in 
            
-           <span> {workspace?.name} </span>
+           <span> "{workspace?.name}" </span>
 
         </span>
         </div>}

@@ -1,9 +1,13 @@
 import { WorkspaceNavbar } from "@/components/organisms/workspace/WorkspaceNavbar"
 import { WorkspacePanel } from "@/components/organisms/workspace/WorkspacePanel"
 import { WorkspaceSideBar } from "@/components/organisms/workspace/WorkspaceSideBar"
+import { Badge } from "@/components/ui/badge"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
 
 export const WorksaceLayout = ({ children }) => {
+
+    console.log("children in workspace Layout", children)
+
     return (
         <div className="h-[100vh] " >
             <WorkspaceNavbar />
@@ -28,8 +32,13 @@ export const WorksaceLayout = ({ children }) => {
                 <ResizablePanel 
                     minSize="20"
                 >
+                    
+                    { children ||
+                        <div className="flex w-full bg-slate-200 h-full flex-wrap justify-center items-center ">
+                            <Badge className="font-semibold rounded-md text-lg p-3" variant="secondary">Select a channle and start messaging</Badge>
+                        </div>
+                    }
 
-                    { children }
 
                 </ResizablePanel>
 

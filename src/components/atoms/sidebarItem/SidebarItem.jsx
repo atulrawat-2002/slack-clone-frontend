@@ -30,7 +30,7 @@ export const SidebarItem = ({
   return (
    
         <Button variant='transparent'className={cn(sideBarItemVariants({variant}))} size='sm'  >
-            <Link to={`/workspace/${workspaceId}/channels/${id}`} className='flex items-center gap-1.5' >
+            <Link to={`/workspace/${workspaceId}/channels/${id}`} className=' text-white flex items-center gap-1.5' >
                 <Icon className='size-3.5 mr-1' />
                 <span className='text-sm' > { label } </span>
             </Link>

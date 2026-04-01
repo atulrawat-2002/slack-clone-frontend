@@ -9,6 +9,7 @@ import Home from './pages/home/Home'
 import { WorksaceLayout } from './pages/workspace/Layout'
 import { JoinPage } from './pages/workspace/JoinPage'
 import { Channel } from './pages/channel/Channel'
+import { Dm } from './pages/dm/Dm'
 
 const AppRoutes = () => {
   return (
@@ -26,6 +27,8 @@ const AppRoutes = () => {
           <Route path='/workspace/:workspaceId' element={ <ProtectedRoute> <WorksaceLayout>{false}</WorksaceLayout> </ProtectedRoute> } />
 
           <Route path='/workspace/:workspaceId/channels/:channelId' element={ <ProtectedRoute> <WorksaceLayout> <Channel /> </WorksaceLayout> </ProtectedRoute> } />
+
+          <Route path='/dms/:userId' element={ <ProtectedRoute> <WorksaceLayout> <Dm /> </WorksaceLayout> </ProtectedRoute> } />
 
           <Route path='/workspace/join/:workspaceId' element={<ProtectedRoute> <JoinPage /> </ProtectedRoute>} />
 

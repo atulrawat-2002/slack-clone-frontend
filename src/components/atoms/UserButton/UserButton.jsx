@@ -49,7 +49,7 @@ const UserButton = () => {
 
     <Hint label="Menu" >
     <DropdownMenu  >
-  <DropdownMenuTrigger className="bg-slate-400 rounded-3xl border border-purple-950" >
+  <DropdownMenuTrigger className="bg-slate-400 rounded-3xl border-2 border-purple-950" >
 
     <Avatar className='size-10 hover:opacity-65 transition' >
 
@@ -62,27 +62,27 @@ const UserButton = () => {
   
   <DropdownMenuContent>
     <DropdownMenuGroup>
-      <DropdownMenuLabel>My Account</DropdownMenuLabel>
-      <DropdownMenuItem onClick={handleLogout} >
+      <DropdownMenuLabel className="font-bold" >My Account</DropdownMenuLabel>
+      <DropdownMenuItem className="cursor-pointer" onClick={handleLogout} >
 
         <LogOutIcon  className='size-4 mr-2 cursor-pointer' />
         Logout
 
       </DropdownMenuItem>
 
-      <DropdownMenuItem>
+      <DropdownMenuItem className="cursor-pointer" >
 
         <SettingsIcon className='size-4 mr-2 cursor-pointer' />
         Setting
 
       </DropdownMenuItem>
-      <DropdownMenuItem onClick={openWorkspaceCreateModal} >
+      <DropdownMenuItem className="cursor-pointer" onClick={openWorkspaceCreateModal} >
 
         <PencilIcon className='size-4 mr-2 cursor-pointer' />
         Create Worksace
 
       </DropdownMenuItem>
-      <DropdownMenuItem  onClick={() => setToggleAllExistingWorkspacesModal(prev => !prev)}>
+      <DropdownMenuItem className="cursor-pointer"  onClick={() => setToggleAllExistingWorkspacesModal(prev => !prev)}>
 
         <RssIcon className='size-4 mr-2 cursor-pointer'  />
         Join A Worksace
@@ -91,8 +91,8 @@ const UserButton = () => {
     </DropdownMenuGroup>
     <DropdownMenuSeparator />
     <DropdownMenuGroup>
-      <DropdownMenuItem>Team</DropdownMenuItem>
-      <DropdownMenuItem>Subscription</DropdownMenuItem>
+      <DropdownMenuItem className="cursor-pointer" >Team</DropdownMenuItem>
+      <DropdownMenuItem className="cursor-pointer" >Subscription</DropdownMenuItem>
     </DropdownMenuGroup>
   </DropdownMenuContent>
 </DropdownMenu>

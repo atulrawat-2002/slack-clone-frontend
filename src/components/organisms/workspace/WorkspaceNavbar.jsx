@@ -49,7 +49,7 @@ export const WorkspaceNavbar = () => {
     <nav className="flex items-center justify-center h-10 p-1.5  bg-slack-DARK" >
         
 
-        <div className="flex-1" />
+        <div className="flex-1 " />
 
       { currentUserRole &&  <div className="" >
 
@@ -57,7 +57,7 @@ export const WorkspaceNavbar = () => {
             
            You ({ auth?.user?.username[0].toUpperCase()+auth?.user?.username.slice(1) }) are { currentUserRole  } in 
            
-           <span> "{workspace?.name}" </span>
+           <span className="" > "{workspace?.name}" </span>
 
         </span>
         </div>}

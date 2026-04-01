@@ -49,7 +49,7 @@ const UserButton = () => {
 
     <Hint label="Menu" >
     <DropdownMenu  >
-  <DropdownMenuTrigger className="bg-slate-400 rounded-3xl border-2 border-purple-950" >
+  <DropdownMenuTrigger className="bg-slate-400 rounded-3xl border-2 outline-4 outline-purple-700 border-purple-950" >
 
     <Avatar className='size-10 hover:opacity-65 transition' >
 

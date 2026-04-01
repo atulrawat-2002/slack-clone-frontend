@@ -3,9 +3,10 @@ import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog'
 import { Separator } from '@/components/ui/separator'
 import { userGetAllExistingWorkspaces } from '@/hooks/apis/workspace/userGetAllExistingWorkspaces'
 import { useAllExistingWorkspacesModal } from '@/hooks/context/useAllExistingWorkspaceModal'
+import { useAuth } from '@/hooks/context/useAuth'
 import { useCurrentWorkspace } from '@/hooks/context/useCurrentWorkspace'
 import { useQueryClient } from '@tanstack/react-query'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export const AllExistingWorkspacesModal = () => {
@@ -14,12 +15,14 @@ export const AllExistingWorkspacesModal = () => {
     const queryClient = useQueryClient();
 
     const { isFetching, isError, allExistingWorkspaces, isSuccess, getAllworkspaceFetch } = userGetAllExistingWorkspaces();
-
+    const { auth } = useAuth()
 
     const navigate = useNavigate()
 
     useEffect(() => {
         // queryClient.invalidateQueries('allExistingWorkspaces');
+        console.log("All workspaces", allExistingWorkspaces)
+        console.log("current user's id", auth?.user?._id)
         if(toggleAllExistingWorkspacesModal) getAllworkspaceFetch();
     }, [toggleAllExistingWorkspacesModal])
 
@@ -41,15 +44,32 @@ export const AllExistingWorkspacesModal = () => {
                     (isSuccess && allExistingWorkspaces) && allExistingWorkspaces?.map((item) => {
                         return <div 
                         key={item?._id} 
-                        className='bg-slate-300 p-1 rounded-md font-semibold flex justify-between items-center'
-                        > <span> {item?.name} </span> 
+                        className='bg-[rgb(153,62,156)] text-white p-1 rounded-md font-semibold flex justify-between items-center'
+                        > <span className='w-[33%] text-center overflow-x-scroll p-1' > {item?.name} </span> 
 
-                            <Button
-                                onClick={() => {
-                                    setToggleAllExistingWorkspacesModal(false);
-                                    navigate(`/workspace/join/${item?._id}`)
-                                }}
-                            > Join </Button>
+                            <p className='w-[33%] text-center text-[rgb(53,1,54)] p-2' >
+                                {
+                                    item?.members?.find(member => member?.memberId === auth?.user?._id)?.role
+                                }
+                            </p>
+
+                            {
+                                (item?.members?.find((member) => {
+                                    if (member?.memberId === auth?.user?._id) {
+
+                                    }
+                                    return member?.memberId === auth?.user?._id
+
+                                })) ? 
+                                 <p className='w-[33%] text-center p-2 font-semibold text-[rgb(53,1,54)]' > Joined </p> :
+                                 <Button 
+                                    className="bg-[rgb(89,22,90)] w-[33%] text-center "
+                                    onClick={() => {
+                                        setToggleAllExistingWorkspacesModal(false);
+                                        navigate(`/workspace/join/${item?._id}`)
+                                    }}
+                                > Join </Button>
+                            }
 
                          </div>
                     })

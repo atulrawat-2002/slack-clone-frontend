@@ -17,7 +17,7 @@ export const createWorkspaceRequest = async ({ name, description, token }) => {
     } catch (error) {
 
         console.log('Error in create workspace requesr', error.message);
-        throw error
+        // throw error
 
     }
 

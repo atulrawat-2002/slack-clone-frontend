@@ -15,30 +15,16 @@ import {
 } from "@/components/ui/card";
 import { useAuth } from "@/hooks/context/useAuth";
 
-const Home = () => {
-  const { isFetching, workSpaces } = userFetchWorkspace();
-  const { setOpenCreateWorkspaceModal } = useCreateWorkspaceModal();
+const UserProfile = () => {
   const { toggleAllExistingWorkspacesModal } = useAllExistingWorkspacesModal();
   const { auth } = useAuth()
   const navigate = useNavigate();
 
   useEffect(() => {
 
-    if (isFetching) return;
-
-    if (!workSpaces) {
-      console.log("Inside home and returning ", workSpaces);
-    }
-
     if (toggleAllExistingWorkspacesModal) return;
 
-    if (workSpaces.length === 0 || !workSpaces) {
-      console.log("NO workspaces found!");
-      setOpenCreateWorkspaceModal(true);
-    } else {
-      navigate(`/workspace/${workSpaces[0]._id}`);
-    }
-  }, [isFetching, workSpaces, navigate]);
+  }, [navigate]);
 
   return (
     <div className="bg-slack-MEDIUM h-[100vh] pt-1" > 
@@ -73,4 +59,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default UserProfile;

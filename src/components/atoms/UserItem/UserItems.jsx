@@ -19,7 +19,7 @@ const userItemsVariants = cva(
     }
 )
 
-export const UserItems = ({ id, label='Member', image, variant='default' }) => {
+export const UserItems = ({ id, role, label='Member', image, variant='default' }) => {
 
     const workspace = useCurrentWorkspace();
 
@@ -42,6 +42,9 @@ export const UserItems = ({ id, label='Member', image, variant='default' }) => {
 
     <span className="truncate text-sm">
       {label}
+    </span>
+    <span className={role === 'admin' ? 'text-orange-400' : 'text-green-400'}>
+      ({role})
     </span>
   </Link>
 </Button>

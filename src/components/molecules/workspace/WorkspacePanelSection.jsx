@@ -15,7 +15,7 @@ export const WorkspacePanelSection = ({ children, label, onIconClick }) => {
             <Button
                 onClick={() => setOpen(!open)}
                 variant='transparent'
-                className="p-0.5 text-sm size-6 text-[#f9edffcc]"
+                className=" p-0.5 text-sm size-6 text-[#f9edffcc]"
             >
 
             { open ? <FaCaretDown className='size-4' /> : <FaCaretRight className='size-4' /> }
@@ -23,6 +23,7 @@ export const WorkspacePanelSection = ({ children, label, onIconClick }) => {
             </Button>
 
             <Button
+                onClick={() => setOpen(!open)}
                 variant='transparent'
                 size='sm'
                 className='group px-1.5 text-sm text-[#f9edffcc] h-[30px] justify-start items-center overflow-hidden'

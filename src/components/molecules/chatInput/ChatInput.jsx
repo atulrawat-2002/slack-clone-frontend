@@ -11,14 +11,14 @@ export const ChatInput = () => {
 
     function handlesubmit(data) {
         console.log("sending the raw data: " ,data)
-        // socket.emit('newMessage', {
-        //     channelId: currentChannel,
-        //     body, 
-        //     senderId: auth?.user?._id,
-        //     workSpaceId: currentWorkspace?._id
-        // }, (data) => {
-        //     console.log('Message sent', data)
-        // })
+        socket.emit('newMessage', {
+            // channelId: currentChannel,
+            body, 
+            senderId: auth?.user?._id,
+            workSpaceId: currentWorkspace?._id
+        }, (data) => {
+            console.log('Message sent', data)
+        })
     }
 
     return (

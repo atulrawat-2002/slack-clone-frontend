@@ -10,6 +10,7 @@ import { WorksaceLayout } from './pages/workspace/Layout'
 import { JoinPage } from './pages/workspace/JoinPage'
 import { Channel } from './pages/channel/Channel'
 import { Dm } from './pages/dm/Dm'
+import UserProfile from './pages/userProfile/UserProfile'
 
 const AppRoutes = () => {
   return (
@@ -25,6 +26,8 @@ const AppRoutes = () => {
           <Route path='/home' element={ <ProtectedRoute> <Home /> </ProtectedRoute> } />
 
           <Route path='/workspace/:workspaceId' element={ <ProtectedRoute> <WorksaceLayout>{false}</WorksaceLayout> </ProtectedRoute> } />
+
+          {/* <Route path='/workspace/:workspaceId/member/:memberId' element={<ProtectedRoute> <WorksaceLayout> <UserProfile /> </WorksaceLayout> </ProtectedRoute>} /> */}
 
           <Route path='/workspace/:workspaceId/channels/:channelId' element={ <ProtectedRoute> <WorksaceLayout> <Channel /> </WorksaceLayout> </ProtectedRoute> } />
 

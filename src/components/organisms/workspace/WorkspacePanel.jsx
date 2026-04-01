@@ -59,7 +59,7 @@ export const WorkspacePanel = () => {
         >
 
             {workspace?.members.map((member) => {
-                return <UserItems key={member._id} label={member.memberId.username} id={member.memberId._id} image={member.memberId.avatar}  />
+                return <UserItems key={member._id} role={member?.role} label={member.memberId.username} id={member.memberId._id} image={member.memberId.avatar}  />
             })}
 
         </WorkspacePanelSection>

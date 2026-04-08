@@ -41,7 +41,6 @@ const UserButton = () => {
     }
 
      useEffect(() => {
-        console.log("AllExistingWorkspacesModal open:", toggleAllExistingWorkspacesModal)
       }, [toggleAllExistingWorkspacesModal])
 
   return (

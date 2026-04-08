@@ -41,11 +41,12 @@ export const Channel = () => {
     }, [isFetching, isError, joinChannel, channelId])
 
     useEffect(() => {
-        if(isSuccess ) {
-            console.log("fetched messages ", messages)
-            setMessageList(messages.reverse());
-        }
-    }, [isSuccess, messages, setMessageList, channelId]);
+    // ✅ channelId changing is what should trigger a message list reset
+    // isSuccess alone won't re-fire when switching channels
+    if (isSuccess && messages) {
+        setMessageList([...messages].reverse());
+    }
+}, [channelId, isSuccess, messages]);
 
     if(isFetching) {
         return (
@@ -66,12 +67,10 @@ export const Channel = () => {
         );
     }
 
-
-
     return (
         <div className='flex flex-col h-full'>
 
-            <ChannelHeader name={channelDetails?.name} />
+            <ChannelHeader name={channelDetails?.data?.data?.name} />
 
             <div 
             ref={messageListRef}

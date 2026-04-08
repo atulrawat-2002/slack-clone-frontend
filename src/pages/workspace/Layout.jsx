@@ -6,8 +6,6 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 
 export const WorksaceLayout = ({ children }) => {
 
-    console.log("children in workspace Layout", children);
-
     return (
         <div className="h-[100vh] " >
             <WorkspaceNavbar />
@@ -34,7 +32,7 @@ export const WorksaceLayout = ({ children }) => {
                 >
                     
                     { children ||
-                        <div className="flex w-full bg-slate-200 h-full flex-wrap justify-center items-center ">
+                        <div className="flex w-full h-full flex-wrap justify-center items-center ">
                             <Badge className="font-semibold rounded-md text-lg p-3" variant="secondary">Select a channel and start messaging</Badge>
                         </div>
                     }

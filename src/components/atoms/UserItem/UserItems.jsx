@@ -19,7 +19,7 @@ const userItemsVariants = cva(
     }
 )
 
-export const UserItems = ({ id, role, label='Member', image, variant='default' }) => {
+export const UserItems = ({ id: userId, role, label='Member', image, variant='default' }) => {
 
     const workspace = useCurrentWorkspace();
 
@@ -30,7 +30,7 @@ export const UserItems = ({ id, role, label='Member', image, variant='default' }
   size="sm"
 >
   <Link
-    to={`/workspace/${workspace?.currentWorkspace?._id}/member/${id}`}
+    to={`/workspace/${workspace?.currentWorkspace?._id}/dms/${userId}`}
     className="flex items-center gap-2 w-full"
   >
     <Avatar className="h-6 w-6">

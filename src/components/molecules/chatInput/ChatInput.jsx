@@ -3,23 +3,11 @@ import { useAuth } from "@/hooks/context/useAuth";
 import { useCurrentWorkspace } from "@/hooks/context/useCurrentWorkspace";
 import { useSocket } from "@/hooks/context/useSocket";
 
-export const ChatInput = () => {
+export const ChatInput = ({dm}) => {
 
     const { socket, currentChannel } = useSocket();
     const {auth} = useAuth();
     const { currentWorkspace } = useCurrentWorkspace();
-
-    function handlesubmit(data) {
-        console.log("sending the raw data: " ,data)
-        socket.emit('newMessage', {
-            // channelId: currentChannel,
-            body, 
-            senderId: auth?.user?._id,
-            workSpaceId: currentWorkspace?._id
-        }, (data) => {
-            console.log('Message sent', data)
-        })
-    }
 
     return (
         <div
@@ -27,11 +15,11 @@ export const ChatInput = () => {
         >
             <Editor
                 placeholder="Type a message..."
-                onSubmit={handlesubmit}
+                onSubmit={() => {}}
                 onCancel={() => {}}
                 disabled={false}
                 defaultValue=""
-                
+                dm={dm}
             />
 
         </div>

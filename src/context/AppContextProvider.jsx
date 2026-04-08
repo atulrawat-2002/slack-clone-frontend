@@ -7,10 +7,12 @@ import { WorkspaceContextProvider } from './WorkspaceContext'
 import { SocketContexProvider } from './SocketContext'
 import { ChannelMessagesProvider } from './ChannelMessages'
 import { AllExistingWorkspacesProvider } from './AllExistingWorkspaceProvider'
+import { DmSocketContextProvider } from './DmSocketContext'
 
 export const AppContextProvider = CombinedContext(
     AllExistingWorkspacesProvider,
     ChannelMessagesProvider,
+    DmSocketContextProvider,
     SocketContexProvider,
     AuthContexProvider,
     CreateWorkspaceProvider,

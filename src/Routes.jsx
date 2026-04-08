@@ -31,7 +31,7 @@ const AppRoutes = () => {
 
           <Route path='/workspace/:workspaceId/channels/:channelId' element={ <ProtectedRoute> <WorksaceLayout> <Channel /> </WorksaceLayout> </ProtectedRoute> } />
 
-          <Route path='/dms/:userId' element={ <ProtectedRoute> <WorksaceLayout> <Dm /> </WorksaceLayout> </ProtectedRoute> } />
+          <Route path='/workspace/:workspaceId/dms/:userId' element={ <ProtectedRoute> <WorksaceLayout> <Dm /> </WorksaceLayout> </ProtectedRoute> } />
 
           <Route path='/workspace/join/:workspaceId' element={<ProtectedRoute> <JoinPage /> </ProtectedRoute>} />
 

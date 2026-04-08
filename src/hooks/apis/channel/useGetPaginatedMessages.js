@@ -10,7 +10,7 @@ export const useGetPaginatedMessage = (channelId, workSpaceId) => {
         queryFn: () => {
             return getPaginatedMessagesRequest({ channelId, workSpaceId, token: auth?.token, limit: 10, page: 0 })
         },
-        queryKey: ['getPaginatedMessages', channelId],
+       queryKey: ['getPaginatedMessages', channelId],
         cacheTime: 0
     })
 

@@ -29,53 +29,67 @@ export const AllExistingWorkspacesModal = () => {
   return (
     <>
         <Dialog open={toggleAllExistingWorkspacesModal} onOpenChange={setToggleAllExistingWorkspacesModal}
-            classname=' z-20 relative'
+            className=' z-20 relative '
+            
         >
 
-            <DialogContent>
+            <DialogContent className="max-h-[70vh] flex flex-col ">
 
-                <DialogHeader>
-                    <p className=' font-bold text-xl text-center' >  Current Workspaces </p>
-                </DialogHeader>
+    {/* Fixed Header */}
+    <DialogHeader className="shrink-0">
+        <p className="font-bold text-xl text-center">
+            Current Workspaces
+        </p>
+    </DialogHeader>
 
+    {/* Scrollable Content */}
+    <div className="flex-1 overflow-y-auto mt-2 space-y-2">
+        {
+            (isSuccess && allExistingWorkspaces) &&
+            allExistingWorkspaces.map((item) => (
+                <div
+                    key={item?._id}
+                    className='bg-[rgb(153,62,156)] text-white p-1 rounded-md font-semibold flex justify-between items-center'
+                >
+                    <span className='flex-1 text-center truncate p-1'>
+                        {item?.name}
+                    </span>
 
+                    <p className='flex-1 text-center text-[rgb(53,1,54)] p-2'>
+                        {
+                            item?.members?.find(
+                                member => member?.memberId === auth?.user?._id
+                            )?.role
+                        }
+                    </p>
 
-                {
-                    (isSuccess && allExistingWorkspaces) && allExistingWorkspaces?.map((item) => {
-                        return <div 
-                        key={item?._id} 
-                        className='bg-[rgb(153,62,156)] text-white p-1 rounded-md font-semibold flex justify-between items-center'
-                        > <span className='w-[33%] text-center overflow-x-scroll p-1' > {item?.name} </span> 
-
-                            <p className='w-[33%] text-center text-[rgb(53,1,54)] p-2' >
-                                {
-                                    item?.members?.find(member => member?.memberId === auth?.user?._id)?.role
-                                }
-                            </p>
-
-                            {
-                                (item?.members?.find((member) => {
-                                    if (member?.memberId === auth?.user?._id) {
-
-                                    }
-                                    return member?.memberId === auth?.user?._id
-
-                                })) ? 
-                                 <p className='w-[33%] text-center p-2 font-semibold text-[rgb(53,1,54)]' > Joined </p> :
-                                 <Button 
-                                    className="bg-[rgb(89,22,90)] w-[33%] text-center "
+                    {
+                        item?.members?.find(
+                            member => member?.memberId === auth?.user?._id
+                        )
+                            ? (
+                                <p className='flex-1 text-center p-2 font-semibold text-[rgb(53,1,54)]'>
+                                    Joined
+                                </p>
+                            )
+                            : (
+                                <Button
+                                    className="flex-1 bg-[rgb(89,22,90)]"
                                     onClick={() => {
                                         setToggleAllExistingWorkspacesModal(false);
-                                        navigate(`/workspace/join/${item?._id}`)
+                                        navigate(`/workspace/join/${item?._id}`);
                                     }}
-                                > Join </Button>
-                            }
+                                >
+                                    Join
+                                </Button>
+                            )
+                    }
+                </div>
+            ))
+        }
+    </div>
 
-                         </div>
-                    })
-                }
-
-            </DialogContent>
+</DialogContent>
 
         </Dialog>
     </>

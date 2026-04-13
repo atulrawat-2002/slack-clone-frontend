@@ -9,7 +9,6 @@ export const useAddMemberToWorkspace = ( {workspaceId} ) => {
     const { mutateAsync: addMemberToWorkspaceMutation, isSuccess, isPending, error } = useMutation({
         mutationFn: () => addMemberToWorkspaceRequest({ workspaceId, token: auth?.token }),
         onSuccess: (data) => {
-            console.log("data in add member to workspace hook", data);
         },
         onError: (error) => {
             console.log('Error in add member to workspace hook', error.message);

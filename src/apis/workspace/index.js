@@ -69,7 +69,6 @@ export const deleteWorkspaceRequest = async ({ workspaceId, token }) => {
             }
         })
 
-        console.log(response?.data)
         return response?.data?.data;
 
     } catch (error) {
@@ -89,7 +88,6 @@ export const updateWorkspaceRequest = async ({ workspaceId, name, token }) => {
             }
         })
 
-        console.log(response?.data)
         return response?.data?.data;
 
     } catch (error) {

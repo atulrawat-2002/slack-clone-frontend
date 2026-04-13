@@ -29,7 +29,6 @@ export function DmSocketContextProvider({ children }) {
 
     async function createConversation({ senderId, recieverId }) {
         socketRef.current?.emit('createConversation', { senderId, recieverId }, (data) => {
-            console.log('setting conversation id', data?.id);
             setConversationId(data?.id);
             conversationIdref.current = data?.id; // ✅ ref stays in sync
         });

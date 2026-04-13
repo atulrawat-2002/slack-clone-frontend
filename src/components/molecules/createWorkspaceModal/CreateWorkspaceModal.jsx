@@ -33,7 +33,6 @@ export const CreateWorkspaceModal = () => {
             e.preventDefault();
             const data = await createWorkspaceMutation({name: workspaceName});
             queryClient.invalidateQueries('fetchWorkspace')
-            console.log(" created workspace ",data);
             navigate(`/workspace/${data?._id}`);
 
         } catch (error) {
@@ -41,9 +40,7 @@ export const CreateWorkspaceModal = () => {
             throw error;
         } finally {
             setWorkspaceName('');
-            console.log("open state before", openCreateWorkspaceModal)
             setOpenCreateWorkspaceModal(false) 
-            console.log("open state after", openCreateWorkspaceModal)
         }
     }
     

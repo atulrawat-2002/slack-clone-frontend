@@ -25,7 +25,6 @@ export const CreateChannelModal = () => {
     }
 
     async function handleFormSubmit(e) {
-        console.log('called')
         e.preventDefault();
         await addChannelToWorkspaceMutation({
             workspaceId: currentWorkspace?._id,

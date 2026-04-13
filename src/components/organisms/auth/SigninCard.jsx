@@ -23,7 +23,6 @@ const SigninCard = () => {
  
     async function onSigninFormSubmit(e) {
         e.preventDefault();
-        console.log('sending request for signin')
 
         if( !signinForm.email || !signinForm.password ) {
             console.error('All fields are required');

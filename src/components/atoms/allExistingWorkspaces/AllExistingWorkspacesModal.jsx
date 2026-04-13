@@ -21,8 +21,6 @@ export const AllExistingWorkspacesModal = () => {
 
     useEffect(() => {
         // queryClient.invalidateQueries('allExistingWorkspaces');
-        console.log("All workspaces", allExistingWorkspaces)
-        console.log("current user's id", auth?.user?._id)
         if(toggleAllExistingWorkspacesModal) getAllworkspaceFetch();
     }, [toggleAllExistingWorkspacesModal])
 

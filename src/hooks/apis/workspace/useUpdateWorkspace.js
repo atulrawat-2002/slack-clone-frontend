@@ -10,7 +10,6 @@ export const useUpdateWorkspace = (workspaceId) => {
             return updateWorkspaceRequest({ workspaceId, name, token: auth?.token })
         },
         onSuccess: () => {
-            console.log("Workspace updaated successfullt")
         },
         onError: (err) => {
             console.log("error in useupdateworkspace", err)

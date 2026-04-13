@@ -17,7 +17,6 @@ export const useGetPaginatedDms = (conversationId) => {
                     }
                 }
             );
-            console.log("Fetching the old messages of the conversation", response?.data);
             return response.data;
         },
         enabled: !!conversationId, // ✅ only runs when conversationId exists

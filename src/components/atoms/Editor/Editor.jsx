@@ -98,14 +98,12 @@
         }
 
         if (!image) {
-            console.log('sending dm')
             dmSocket?.emit('sendDm', {
                 conversationId: id,
                 senderId: auth?.user?._id,
                 recieverId,
                 body
             }, (data) => {
-                console.log('dm sent', data);
                 setImage(null);
                 imageInputref.current.value = '';
             });
@@ -123,7 +121,6 @@
                         recieverId,
                         image: fileReader.result,
                     }, (data) => {
-                        console.log('dm sent with image', data);
                         setImage(null);
                         imageInputref.current.value = '';
                     });
@@ -274,7 +271,6 @@
                                 onClick={() => {
                                     if (dm) {
                                         const dmContent = JSON.stringify(quillRef?.current.getContents());
-                                        console.log("dm content:",dmContent)
                                         hadleDmSubmit({ body: dmContent, image: image });
                                         quillRef.current?.setText('')
                                     } else {

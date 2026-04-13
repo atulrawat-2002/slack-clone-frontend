@@ -29,7 +29,6 @@ export const WorkspaceNavbar = () => {
     if(workspace) {
 
       workspace?.members.forEach((item) => {
-        // console.log("item id ", item?._id)
         if (item?.memberId?._id === auth?.user?._id) {
           setCurrentUserRole(item?.role);
         }

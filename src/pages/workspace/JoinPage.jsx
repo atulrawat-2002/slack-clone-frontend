@@ -34,7 +34,6 @@ export const JoinPage = () => {
     }
 
     useEffect(() => {
-        console.log("current workspace ", currentWorkspace)
     }, [])
 
     return (

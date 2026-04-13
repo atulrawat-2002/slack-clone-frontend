@@ -7,7 +7,6 @@ export const useDeleteWorkspace = (workspaceId) => {
     const { isPending, isSuccess, error, mutateAsync: deleteWorkspaceMutation } = useMutation({
         mutationFn: () => deleteWorkspaceRequest({ workspaceId, token: auth?.token }),
         onSuccess: () => {
-            console.log("Workspace deleted successfullt")
         },
         onError: (err) => {
             console.log("error in usedeleteworkspace", err)

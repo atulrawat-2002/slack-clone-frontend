@@ -9,7 +9,6 @@ export const useJoinWorkspace = (workspaceId) => {
     const { mutateAsync: joinWorkspceMutation, isPending, isSuccess, error } = useMutation({
         mutationFn: (joinCode) => joinWorkspaceRqquest({workspaceId, joinCode, token: auth?.token}),
         onSuccess: (data) => {
-            console.log('Data in join workspace hook', data);
         },
         onError: (error) => {
             console.log('Error in join workspce hook', error.message)

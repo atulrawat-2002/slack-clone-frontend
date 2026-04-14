@@ -32,7 +32,7 @@ export const CreateChannelModal = () => {
         });
 
         toast("Channel Added successfully", {
-              description: "Sunday, December 03, 2023 at 9:00 AM",
+              description: new Date().toLocaleString(),
               action: {
                 label: "Undo",
                 onClick: () => console.log("Undo"),

@@ -12,7 +12,7 @@ export const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, work
         const iniviteLink = `${joinCode}`;
         await navigator.clipboard.writeText(iniviteLink);
         toast("Link Copied", {
-              description: "Sunday, December 03, 2023 at 9:00 AM",
+              description: new Date().toLocaleString(),
               action: {
                 label: "Undo",
                 onClick: () => console.log("Undo"),
@@ -24,7 +24,7 @@ export const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, work
         try {
             await resetJoinCodeMutation();
         toast("Join code reset", {
-              description: "Sunday, December 03, 2023 at 9:00 AM",
+              description: new Date().toLocaleString(),
               action: {
                 label: "Undo",
                 onClick: () => console.log("Undo"),

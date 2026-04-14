@@ -50,7 +50,7 @@ export const WorkspacePrefrencesModal = () => {
             queryClient.invalidateQueries('fetchWorkspace');
             setOpenPrefrences(false); 
             toast("Deleted workspace successfully", {
-                description: "Sunday, December 03, 2023 at 9:00 AM",
+                description: new Date().toLocaleString(),
                 action: {
                     label: "Undo",
                 onClick: () => console.log("Undo"),
@@ -59,7 +59,7 @@ export const WorkspacePrefrencesModal = () => {
         } catch (error) {
             console.log('Error in handle delete workspace function', error)
             toast("Error while deleting workspace ", {
-          description: "Sunday, December 03, 2023 at 9:00 AM",
+          description: new Date().toLocaleString(),
           action: {
             label: "Undo",
             onClick: () => console.log("Undo"),
@@ -77,7 +77,7 @@ export const WorkspacePrefrencesModal = () => {
             queryClient.invalidateQueries(`fetWorkspaceById-${workspace?._id}`);
             setOpenPrefrences(false);
             toast("Workspace updated successfully", {
-                description: "workspace has been updated",
+                description: new Date().toLocaleString(),
                 action: {
                     label: "undo",
                     onClick: () => console.log('Undo')
@@ -86,7 +86,7 @@ export const WorkspacePrefrencesModal = () => {
         } catch (error) {
             console.log('Error in handle form submit of edit workspace function', error)
             toast("Error while updating workspace ", {
-          description: "Sunday, December 03, 2023 at 9:00 AM",
+          description: new Date().toLocaleString(),
           action: {
             label: "Undo",
             onClick: () => console.log("Undo"),

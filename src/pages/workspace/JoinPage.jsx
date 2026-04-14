@@ -21,7 +21,7 @@ export const JoinPage = () => {
         try {
             await joinWorkspceMutation(joinCode); 
             toast(`You have been added to ${workspaceId} workspace successfully`, {
-              description: "Sunday, December 03, 2023 at 9:00 AM",
+              description: new Date().toLocaleString(),
               action: {
                 label: "Undo",
                 onClick: () => console.log("Undo")     

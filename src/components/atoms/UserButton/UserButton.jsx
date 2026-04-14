@@ -27,7 +27,7 @@ const UserButton = () => {
     async function handleLogout() {
         await logout();
         toast("you have been signed out ", {
-          description: "Sunday, December 03, 2023 at 9:00 AM",
+          description: new Date().toLocaleString(),
           action: {
             label: "Undo",
             onClick: () => console.log("Undo"),

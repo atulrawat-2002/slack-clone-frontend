@@ -29,8 +29,8 @@ const UserButton = () => {
         toast("you have been signed out ", {
           description: new Date().toLocaleString(),
           action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
+            label: "Hide",
+            onClick: () => {},
           },
         })
         navigate('/auth/signin')

@@ -54,7 +54,6 @@
         }
 
         function handleSubmit({body, image} ) {
-            console.log("current channel", currentChannel);
             if(!image) {
                 socket?.emit('newMessage', {
                     channelId: currentChannel,
@@ -62,13 +61,11 @@
                     senderId: auth?.user?._id,
                     workSpaceId: currentWorkspace?._id
                     }, (data) => {
-                        console.log('Message sent', data);
                         setImage(null)
                         imageInputref.current.value = '';
                     })
                     return;
             } else {
-                console.log("with image ", image);
                 const fileReader = new FileReader();
                 fileReader.readAsDataURL(image);
                 fileReader.onload = () => {
@@ -80,7 +77,6 @@
                         senderId: auth?.user?._id,
                         workSpaceId: currentWorkspace?._id
                     }, (data) => {
-                        console.log('Message sent', data);
                         setImage(null)
                         imageInputref.current.value = '';
                     })
@@ -93,7 +89,7 @@
         function hadleDmSubmit({ body, image }) {
         const id = conversationIdref.current;
         if (!id) {
-            console.log('❌ conversation not ready');
+            console.log('conversation not ready');
             return;
         }
 

@@ -6,12 +6,12 @@ import { Button } from '@/components/ui/button';
 export const ChannelHeader = ({ name }) => {
     return (
         <div
-            className="bg-white border-b h-[50px] flex items-center px-4 overflow-hidden"
+            className="bg-amber-50 shadow-md border-b h-[50px] flex items-center px-4 overflow-hidden shrink-0"
         >
             <Dialog>
                 <DialogTrigger asChild>
                     <Button
-                        variant="ghost"
+                        variant="ghost" 
                         className="text-lg font-semibold px-2 w-auto overflow-hidden"
                     >
                         <span># {name} </span>

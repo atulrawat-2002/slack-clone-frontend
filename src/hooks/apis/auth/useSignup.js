@@ -13,18 +13,22 @@ export const useSignup = () => {
             localStorage.setItem('user', data);
             localStorage.setItem('token', JSON.stringify(response.data.token));
 
-            setAuth({
-              user: response.data,
-              token: response.data.token,
-              isLoading: false
+            setAuth(() => {
+                console.log("Setting Auth", response?.data);
+                return {
+                  user: response.data,
+                  token: response.data.token,
+                  isLoading: false
+                }
+
             })
             toast("Event has been created", {
               variant: "destructive",
               description: new Date().toLocaleString(),
               action: {
-                label: "Hide",
-                onClick: () => {},
-              },
+            label: "Hide",
+            onClick: () => {},
+          },
         })
         },
         onError: (error) => {
@@ -33,9 +37,9 @@ export const useSignup = () => {
               variant: "destructive",
               description: new Date().toLocaleString(),
               action: {
-                label: "Hide",
-                onClick: () => {},
-              },
+            label: "Hide",
+            onClick: () => {},
+          },
         })
         }
     })

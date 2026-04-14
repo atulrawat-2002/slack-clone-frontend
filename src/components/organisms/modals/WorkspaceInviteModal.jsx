@@ -14,9 +14,9 @@ export const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, work
         toast("Link Copied", {
               description: new Date().toLocaleString(),
               action: {
-                label: "Undo",
-                onClick: () => console.log("Undo"),
-              },
+            label: "Hide",
+            onClick: () => {},
+          },
             })
     }
 
@@ -26,9 +26,9 @@ export const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, work
         toast("Join code reset", {
               description: new Date().toLocaleString(),
               action: {
-                label: "Undo",
-                onClick: () => console.log("Undo"),
-              },
+            label: "Hide",
+            onClick: () => {},
+          },
             })
         } catch (error) {
             console.log('error in workspace invite modal while reseting join code', error.message)

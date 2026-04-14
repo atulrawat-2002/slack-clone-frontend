@@ -23,9 +23,9 @@ export const JoinPage = () => {
             toast(`You have been added to ${workspaceId} workspace successfully`, {
               description: new Date().toLocaleString(),
               action: {
-                label: "Undo",
-                onClick: () => console.log("Undo")     
-              },
+            label: "Hide",
+            onClick: () => {},
+          }, 
             })
             navigate(`/workspace/${workspaceId}`)
         } catch (error) {

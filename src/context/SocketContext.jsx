@@ -33,7 +33,6 @@ export const SocketContexProvider = ({ children }) => {
     if (sock.connected) {
         // already connected, emit immediately
         sock.emit('joinChannel', { channelId }, (data) => {
-            console.log('join channel event', data);
             setCurrentChannel(data?.data);
         });
     } else {

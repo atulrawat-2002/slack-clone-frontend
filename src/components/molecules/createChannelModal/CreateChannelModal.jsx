@@ -34,9 +34,9 @@ export const CreateChannelModal = () => {
         toast("Channel Added successfully", {
               description: new Date().toLocaleString(),
               action: {
-                label: "Undo",
-                onClick: () => console.log("Undo"),
-              },
+                label: "Hide",
+                onClick: () => {},
+          },
         })
 
         queryClient.invalidateQueries({

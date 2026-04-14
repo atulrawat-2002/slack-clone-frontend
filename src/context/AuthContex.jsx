@@ -18,16 +18,22 @@ export const AuthContexProvider = ({children}) => {
         const token = localStorage.getItem('token');
 
         if(user && token) {
-            setAuth({
-                user: user ? JSON.parse(user) : null,
-                token: token ? JSON.parse(token) : null,
-                isLoading: false
+            setAuth(() => {
+                console.log("Setting Auth", JSON.parse(user));
+                return {
+                    user: user ? JSON.parse(user) : null,
+                    token: token ? JSON.parse(token) : null,
+                    isLoading: false
+                }
             })
         } else {
-            setAuth({
-                user: null,
-                token: null,
-                isLoading: false
+            setAuth(() => {
+                console.log("Setting Auth", null);
+                return {
+                    user: null,
+                    token: null,
+                    isLoading: false
+                }
             })
         }
 
@@ -37,11 +43,14 @@ export const AuthContexProvider = ({children}) => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
 
-        setAuth({
-            user: null,
-            token: null,
-            isLoading: false
-        })
+        setAuth(() => {
+                console.log("Setting Auth", null);
+                return {
+                    user: null,
+                    token: null,
+                    isLoading: false
+                }
+            })
     }
 
   return (

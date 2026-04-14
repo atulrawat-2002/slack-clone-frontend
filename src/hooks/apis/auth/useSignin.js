@@ -13,28 +13,32 @@ export const useSignin = () => {
             localStorage.setItem('user', data);
             localStorage.setItem('token', JSON.stringify(response.data.token));
 
-            setAuth({
-              user: response.data,
-              token: response.data.token,
-              isLoading: false
+            setAuth(() => {
+                console.log("Setting Auth", response?.data);
+                return {
+                  user: response.data,
+                  token: response.data.token,
+                  isLoading: false
+                }
+
             })
 
             toast("signed in successfully", {
               description: new Date().toLocaleString(),
               action: {
-                label: "Undo",
-                onClick: () => console.log("Undo"),
-              },
+            label: "Hide",
+            onClick: () => {},
+          },
             })
         },
         onError: (error) => {
             console.log("Error in use signin hook ", error)
             toast(error.message, {
             description: new Date().toLocaleString(),
-            action: {
-              label: "Undo",
-              onClick: () => console.log("Undo"),
-            },
+           action: {
+            label: "Hide",
+            onClick: () => {},
+          },
         })
         }
     })

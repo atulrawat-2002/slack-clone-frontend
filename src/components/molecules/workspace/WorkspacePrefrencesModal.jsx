@@ -52,8 +52,8 @@ export const WorkspacePrefrencesModal = () => {
             toast("Deleted workspace successfully", {
                 description: new Date().toLocaleString(),
                 action: {
-                    label: "Undo",
-                onClick: () => console.log("Undo"),
+                label: "Hide",
+                onClick: () => {},
           },
         }) 
         } catch (error) {
@@ -61,8 +61,8 @@ export const WorkspacePrefrencesModal = () => {
             toast("Error while deleting workspace ", {
           description: new Date().toLocaleString(),
           action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
+            label: "Hide",
+            onClick: () => {},
           },
         })
         }
@@ -79,17 +79,17 @@ export const WorkspacePrefrencesModal = () => {
             toast("Workspace updated successfully", {
                 description: new Date().toLocaleString(),
                 action: {
-                    label: "undo",
-                    onClick: () => console.log('Undo')
-                }
+            label: "Hide",
+            onClick: () => {},
+          },
             })
         } catch (error) {
             console.log('Error in handle form submit of edit workspace function', error)
             toast("Error while updating workspace ", {
           description: new Date().toLocaleString(),
           action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
+            label: "Hide",
+            onClick: () => {},
           },
         })
         }

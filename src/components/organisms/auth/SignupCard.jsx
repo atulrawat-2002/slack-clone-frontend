@@ -53,7 +53,6 @@ const SignupCard = () => {
     }
 
     useEffect(() => {
-        console.log('console log inside useeffect of signup');
         if(isSuccess) {
             setTimeout(() => {
                 navigate('/home');

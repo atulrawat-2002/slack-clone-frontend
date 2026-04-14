@@ -56,6 +56,12 @@
 /* ----------------------
    Custom Tailwind utilities
 ------------------------*/
+
+.cn-toast-desc {
+  color: #111827 !important;
+  opacity: 1 !important;
+}
+
 @layer utilities {
   .border-border {
     border-color: var(--border);

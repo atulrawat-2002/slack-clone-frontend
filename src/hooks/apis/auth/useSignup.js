@@ -19,9 +19,10 @@ export const useSignup = () => {
               isLoading: false
             })
             toast("Event has been created", {
+              variant: "destructive",
               description: "Sunday, December 03, 2023 at 9:00 AM",
               action: {
-                label: "Undo",
+                label: "Hide",
                 onClick: () => console.log("Undo"),
               },
         })
@@ -29,11 +30,13 @@ export const useSignup = () => {
         onError: (error) => {
             console.log("Error in use signup hook ", error)
              toast(error.message, {
-          description: "None",
-          action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
-          },
+              variant: "destructive",
+              className: "bg-black text-white",
+              description: new Date().toLocaleString(),
+              action: {
+                label: "Hide",
+                onClick: () => console.log("Hide"),
+              },
         })
         }
     })

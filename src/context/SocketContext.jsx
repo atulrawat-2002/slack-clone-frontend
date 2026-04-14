@@ -12,7 +12,6 @@ export const SocketContexProvider = ({ children }) => {
     const { setMessageList } = useChannelMessages();
 
     useEffect(() => {
-        console.log('creating socket connection for channel')
         const newSocket = io(import.meta.env.VITE_BACKEND_SOCKET_URL);
         socketRef.current = newSocket;
         setSocket(newSocket); // ✅ triggers re-render so Editor gets the real socket
